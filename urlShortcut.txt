@@ -1,0 +1,2 @@
+alt,g,https://www.google.com
+alt,y,https://youtube.com

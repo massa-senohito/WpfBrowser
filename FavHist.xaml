@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="WpfBrowser.FavHistControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfBrowser"
+        xmlns:tk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Column="0" x:Name="URLBox" KeyDown="URLBox_KeyDown"></TextBox>
+        <DockPanel Grid.Column="1">
+            <tk:DropDownButton Name="HistDropDown" Content="History" DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+                <tk:DropDownButton.DropDownContent>
+                    <local:URLListControl ListType="Hist" x:Name="Hist" Width="500" Height="500" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                </tk:DropDownButton.DropDownContent>
+            </tk:DropDownButton>
+        </DockPanel>
+        <DockPanel Grid.Column="2">
+            <tk:DropDownButton Name="FavDropDown" Content="Fav" DockPanel.Dock="Right" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <tk:DropDownButton.DropDownContent>
+                    <local:URLListControl ListType="Fav" x:Name="Fav" Width="500" Height="500"/>
+                </tk:DropDownButton.DropDownContent>
+            </tk:DropDownButton>
+
+        </DockPanel>
+    </Grid>
+</UserControl>
