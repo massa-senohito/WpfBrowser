@@ -26,6 +26,7 @@ namespace WpfBrowser
     {
         public Microsoft.Web.WebView2.Core.CoreWebView2Deferral Deferral;
         FaviconDownload FavDownLoader;
+        HotkeyLoader hot = new HotkeyLoader("urlShortcut.txt");
         public MainWindow( )
         {
             InitializeComponent( );
@@ -41,6 +42,10 @@ namespace WpfBrowser
             //var ht = HotkeyManager.Current;
             //ht.AddOrReplace( "google" , Ke.G , Alt , OnGoogle );
             Hist.SetParent( this );
+            for ( int i = 0 ; i < hot.FavKey.Count ; i++ )
+            {
+                Hist.AddFav( hot.FavKey[i] , hot.FavUrl[i] );
+            } 
             InitializeAsync( );
         }
 
@@ -109,7 +114,6 @@ namespace WpfBrowser
         {
             Browser.CoreWebView2.Navigate( url );
         }
-        HotkeyLoader hot = new HotkeyLoader("urlShortcut.txt");
         private void Browser_KeyDown( object sender , KeyEventArgs e )
         {
             var mod = e.KeyboardDevice.Modifiers;

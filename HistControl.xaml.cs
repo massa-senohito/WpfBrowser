@@ -14,6 +14,16 @@ using System.Diagnostics;
 
 namespace WpfBrowser
 {
+    public class UrlListViewItem : ListViewItem
+    {
+        public string Title;
+        public string Url;
+        public UrlListViewItem( string title ,string url)
+        {
+            Title = title;
+            Url = url;
+        }
+    }
     /// <summary>
     /// HistControl.xaml の相互作用ロジック
     /// </summary>
@@ -30,8 +40,8 @@ namespace WpfBrowser
 
         private void URLList_SelectionChanged( object sender , SelectionChangedEventArgs e )
         {
-            var item = e.AddedItems[0] as ListViewItem;
-            Main.Navigate( item.Content as string);
+            var item = e.AddedItems[0] as UrlListViewItem;
+            Main.Navigate( item.Url);
             Main.Focus( );
         }
 
@@ -83,11 +93,25 @@ namespace WpfBrowser
                 AddURL( item.Url );
             }
         }
-        public void AddURL(string url)
+        public void AddURL( string url , string title = "" )
         {
-            var item = new ListViewItem();
-            item.Content = url;
+            var item = new UrlListViewItem(title,url);
+            if ( title == "" )
+            {
+                item.Content = url;
+            }
+            else
+            {
+                item.Content = $"{title},{url}";
+            }
             URLList.Items.Add( item );
+        }
+        public int UrlCount
+        {
+            get
+            {
+                return URLList.Items.Count;
+            }
         }
     }
 }

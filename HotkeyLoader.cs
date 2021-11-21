@@ -17,7 +17,16 @@ namespace WpfBrowser
             public Ke Key { get; set; }
             public string Url { get; set; }
         }
+        IEnumerable<string> Tops( IEnumerable<string> items )
+        {
+            for ( int i = 0 ; i < items.Count( ) - 1 ; i++ )
+            {
+                yield return items.ElementAt( i );
+            }
+        }
         List<HotKey> HotKeys = new List<HotKey>();
+        public List<string> FavKey = new List<string>();
+        public List<string> FavUrl = new List<string>();
         public string OnHotKey( MKe mkey , Ke key )
         {
             var hot = HotKeys.FirstOrDefault( h => h.ModKey == mkey && h.Key == key );
@@ -35,7 +44,10 @@ namespace WpfBrowser
                 var els = line.Split( ',' );
                 var mkey = MKe.None;
                 var key = Ke.None;
+                var keyStr = Tops(els).Aggregate((acc,s)=>acc = acc + "," + s);
+                FavKey.Add( keyStr );
                 var url = els.Last();
+                FavUrl.Add( url );
                 for ( int i = 0 ; i < els.Length - 1 ; i++ )
                 {
                     var tol = els[i].ToUpper();
