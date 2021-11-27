@@ -21,9 +21,9 @@ namespace WpfBrowser
         public FavHistControl( )
         {
             InitializeComponent( );
-            IEnumerable<UrlModel> favs ; IEnumerable<UrlModel> hists;
-            DB.FetchFavHistList( out favs , out hists );
-            LoadFavHist( favs , hists );
+            //IEnumerable<UrlModel> favs ; IEnumerable<UrlModel> hists;
+
+            //LoadFavHist( favs , hists );
             var app = (App)Application.Current;
             app.DispatcherUnhandledException += App_DispatcherUnhandledException;
             app.Exit += App_Exit;
@@ -51,13 +51,13 @@ namespace WpfBrowser
 
         public void AddHist( string title , string url )
         {
-            DB.Add( DBLoader.MakeUrl( title , url , URLListType.Hist ) );
+            //DB.Add( DBLoader.MakeUrl( title , url , URLListType.Hist ) );
             HistDropDown.Content = $"History({Hist.UrlCount})";
             Hist.AddURL( url );
         }
         public void AddFav( string title , string url )
         {
-            DB.Add( DBLoader.MakeUrl( title , url , URLListType.Fav ) );
+            //DB.Add( DBLoader.MakeUrl( title , url , URLListType.Fav ) );
             Fav.AddURL( url , title );
         }
         public void SetUrl(string url)

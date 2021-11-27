@@ -25,7 +25,7 @@ namespace WpfBrowser
     public partial class MainWindow : Window
     {
         public Microsoft.Web.WebView2.Core.CoreWebView2Deferral Deferral;
-        FaviconDownload FavDownLoader;
+        //FaviconDownload FavDownLoader;
         HotkeyLoader hot = new HotkeyLoader("urlShortcut.txt");
         public MainWindow( )
         {

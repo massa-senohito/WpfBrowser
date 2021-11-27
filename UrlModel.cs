@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
-using Nest;
 namespace WpfBrowser
 {
+    // 最適化
+    //https://iyemon018.hatenablog.com/entry/2016/03/04/150330
     public enum URLListType
     {
         Hist,
@@ -35,13 +36,9 @@ namespace WpfBrowser
     public class DBLoader : IDisposable
     {
         private bool disposedValue;
-        ElasticClient Client;
+        //ElasticClient Client;
         public DBLoader( )
         {
-            var settings = new ConnectionSettings(new Uri("http://localhost:9200"))
-    .DefaultIndex("browser");
-
-            Client = new ElasticClient(settings);
         }
         public static UrlModel MakeUrl( string title , string url , URLListType type)
         {
@@ -51,18 +48,6 @@ namespace WpfBrowser
             urlm.URLType = type;
             return urlm;
         }
-        public void FetchFavHistList( out IEnumerable<UrlModel> favs , out IEnumerable<UrlModel> hists )
-        {
-            var res =
-            Client.Search<UrlModel>( );
-            favs = res.Documents.Where( u => u.URLType == URLListType.Fav );
-            hists = res.Documents.Where( u => u.URLType == URLListType.Hist );
-        }
-        public void Add( UrlModel url )
-        {
-            Client.IndexDocument(url);
-        }
-
         protected virtual void Dispose( bool disposing )
         {
             if ( !disposedValue )
