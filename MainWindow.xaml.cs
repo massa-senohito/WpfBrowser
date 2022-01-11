@@ -118,9 +118,31 @@ namespace WpfBrowser
         {
             var mod = e.KeyboardDevice.Modifiers;
             var url = hot.OnHotKey(mod , e.Key);
-            if(url != null)
+            if ( url != null )
             {
                 Browser.CoreWebView2.Navigate( url );
+                e.Handled = true;
+                return;
+            }
+            // https://github.com/calebcase/cvim
+            // cvim 操作
+            if (mod == MKe.Control && e.Key == Ke.T )
+            {
+                Browser.ExecuteScriptAsync( "window.scrollTo(0,0)" );
+                e.Handled = true;
+                return;
+            }
+            if (mod == MKe.Control  && e.Key == Ke.H )
+            {
+                Browser.ExecuteScriptAsync( "window.scrollTo(0,document.body.scrollHeight / 2.0)" );
+                e.Handled = true;
+                return;
+            }
+            if (mod == MKe.Control  && e.Key == Ke.B )
+            {
+                Browser.ExecuteScriptAsync( "window.scrollTo(0,document.body.scrollHeight)" );
+                e.Handled = true;
+                return;
             }
 
 //EO
