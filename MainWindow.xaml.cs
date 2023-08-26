@@ -79,9 +79,10 @@ namespace WpfBrowser
 
         private void CoreWebView2_NewWindowRequested( object sender , Microsoft.Web.WebView2.Core.CoreWebView2NewWindowRequestedEventArgs e )
         {
-            if ( Keyboard.IsKeyDown( Ke.LeftShift ) )
+            // 左シフトを押しながらリンククリックでそのまま表示
+            // ポップアップを表示させる
+            if (Keyboard.IsKeyDown( Ke.LeftShift ))
             {
-
             }
             else
             {
@@ -103,7 +104,6 @@ namespace WpfBrowser
             else{
                 Navigate( "https://www.google.com" );
             }
-            //Browser.CoreWebView2.WebMessageReceived += UpdateAddressBar;
         }
 
         private void Browser_PreviewKeyDown( object sender , KeyEventArgs e )
@@ -113,6 +113,14 @@ namespace WpfBrowser
         public void Navigate( string url )
         {
             Browser.CoreWebView2.Navigate( url );
+        }
+        public void Forward()
+        {
+            Browser.GoForward();
+        }
+        public void Back()
+        {
+            Browser.GoBack();
         }
         private void Browser_KeyDown( object sender , KeyEventArgs e )
         {

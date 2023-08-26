@@ -78,5 +78,13 @@ namespace WpfBrowser
             }
         }
 
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Back();
+        }
+        private void ForwardButton_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Forward();
+        }
     }
 }

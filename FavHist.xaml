@@ -12,16 +12,19 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBox Grid.Column="0" x:Name="URLBox" KeyDown="URLBox_KeyDown"></TextBox>
-        <DockPanel Grid.Column="1">
+        <Button Grid.Column="1" Content="Back" x:Name="BackButton" Width="80" Click="BackButton_Click" HorizontalAlignment="Left"></Button>
+        <Button Grid.Column="1" Content="Forward" x:Name="ForwardButton" Width="80" Click="ForwardButton_Click" HorizontalAlignment="Left" Margin="80,0,0,0"/>
+        <DockPanel Grid.Column="2">
             <tk:DropDownButton Name="HistDropDown" Content="History" DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
                 <tk:DropDownButton.DropDownContent>
                     <local:URLListControl ListType="Hist" x:Name="Hist" Width="500" Height="500" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                 </tk:DropDownButton.DropDownContent>
             </tk:DropDownButton>
         </DockPanel>
-        <DockPanel Grid.Column="2">
+        <DockPanel Grid.Column="3">
             <tk:DropDownButton Name="FavDropDown" Content="Fav" DockPanel.Dock="Right" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <tk:DropDownButton.DropDownContent>
                     <local:URLListControl ListType="Fav" x:Name="Fav" Width="500" Height="500"/>
